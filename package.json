@@ -1,0 +1,23 @@
+{
+  "name": "kmeans-firefly",
+  "version": "1.0.0",
+  "description": "Improving K-means with Firefly algorithm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prajjwaldimri/kmeans-firefly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prajjwaldimri/kmeans-firefly/issues"
+  },
+  "homepage": "https://github.com/prajjwaldimri/kmeans-firefly#readme",
+  "dependencies": {
+    "ml-kmeans": "^5.0.0"
+  }
+}
