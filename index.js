@@ -1,4 +1,5 @@
 const kmeans = require("ml-kmeans");
+const { Matrix } = require("ml-matrix");
 const fs = require("fs");
 const readline = require("readline");
 
@@ -29,14 +30,46 @@ readInterface.on("close", () => {
   const kmeansResult = kmeans(points, 2).centroids;
   fireflies[0] = [kmeansResult[0].centroid, kmeansResult[1].centroid];
   let i = 0;
+
+  fireflies.forEach(firefly => {
+    firefliesFitnesses.push(fitnessCalculator(firefly));
+  });
+
   // Some termination criteria should be specified here
-  while (i < 1) {
-    fireflies.forEach(firefly => {
-      firefliesFitnesses.push(fitnessCalculator(firefly, 2));
-    });
+  while (i < 10) {
+    let alpha = 0.2;
+    let epsilon = new Matrix([
+      [3.73, 2.408],
+      [-5.04, 2.907]
+    ]);
+    let theta = 0.97;
+
+    // Update the positions of fireflies
+    for (let first = 0; first < fireflies.length; first++) {
+      for (let second = 0; second < fireflies.length; second++) {
+        if (firefliesFitnesses[first] < firefliesFitnesses[second]) {
+          // Generate a random control matrix
+          let controlMatrix = new Matrix(controlMatrixGenerator());
+          let firstFirefly = new Matrix(fireflies[first]);
+          let secondFirefly = new Matrix(fireflies[second]);
+          let firstFireflyNewPosition = Matrix.add(
+            firstFirefly,
+            Matrix.add(
+              Matrix.multiply(
+                controlMatrix,
+                Matrix.subtract(secondFirefly, firstFirefly)
+              ),
+              Matrix.mul(epsilon, alpha)
+            )
+          );
+          fireflies[first] = firstFireflyNewPosition.to2DArray();
+        }
+      }
+    }
+    alpha *= theta;
     i++;
   }
-  console.log(firefliesFitnesses);
+  console.log(fireflies);
 });
 
 function fitnessCalculator(firefly) {
@@ -75,6 +108,19 @@ function fitnessCalculator(firefly) {
     });
   }
   return fitness;
+}
+
+function controlMatrixGenerator() {
+  return [
+    [
+      Math.floor(Math.random() * Math.floor(2)),
+      Math.floor(Math.random() * Math.floor(2))
+    ],
+    [
+      Math.floor(Math.random() * Math.floor(2)),
+      Math.floor(Math.random() * Math.floor(2))
+    ]
+  ];
 }
 
 function euclideanDistanceCalculator(point1, point2) {
