@@ -32,6 +32,7 @@ readInterface.on("close", () => {
   fireflies[0] = [kmeansResult[0].centroid, kmeansResult[1].centroid];
   let i = 0;
 
+  // Compute the fitness for each firefly.
   fireflies.forEach(firefly => {
     firefliesFitnesses.push(fitnessCalculator(firefly));
   });
