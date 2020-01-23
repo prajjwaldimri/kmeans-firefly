@@ -19,6 +19,7 @@
   "homepage": "https://github.com/prajjwaldimri/kmeans-firefly#readme",
   "dependencies": {
     "ml-kmeans": "^5.0.0",
-    "ml-matrix": "^6.4.1"
+    "ml-matrix": "^6.4.1",
+    "nodeplotlib": "^0.6.5"
   }
 }

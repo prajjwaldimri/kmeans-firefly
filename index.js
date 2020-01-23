@@ -1,5 +1,6 @@
 const kmeans = require("ml-kmeans");
 const { Matrix } = require("ml-matrix");
+const { plot, Plot } = require("nodeplotlib");
 const fs = require("fs");
 const readline = require("readline");
 
@@ -36,7 +37,7 @@ readInterface.on("close", () => {
   });
 
   // Some termination criteria should be specified here
-  while (i < 10) {
+  while (i < 5) {
     let alpha = 0.2;
     let epsilon = new Matrix([
       [3.73, 2.408],
@@ -68,8 +69,29 @@ readInterface.on("close", () => {
     }
     alpha *= theta;
     i++;
+    const trace = {
+      x: [
+        fireflies[0][0][0],
+        fireflies[1][0][0],
+        fireflies[2][0][0],
+        fireflies[3][0][0],
+        fireflies[4][0][0]
+      ],
+      y: [
+        fireflies[0][0][1],
+        fireflies[1][0][1],
+        fireflies[2][0][1],
+        fireflies[3][0][1],
+        fireflies[4][0][1]
+      ],
+      mode: "markers",
+      type: "scatter"
+    };
+    plot([trace], {
+      width: 1366,
+      height: 768
+    });
   }
-  console.log(fireflies);
 });
 
 function fitnessCalculator(firefly) {
