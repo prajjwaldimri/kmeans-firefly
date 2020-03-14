@@ -22,11 +22,16 @@ readInterface.on("line", line => {
 readInterface.on("close", () => {
   // Choose fireflies
   fireflies.push(
-    [points[1], points[6]],
-    [points[2], points[3]],
-    [points[0], points[7]],
-    [points[8], points[5]],
-    [points[4], points[9]]
+    [points[0], points[9]],
+    [points[1], points[10]],
+    [points[2], points[11]],
+    [points[3], points[12]],
+    [points[4], points[13]],
+    [points[5], points[14]],
+    [points[6], points[15]],
+    [points[7], points[16]],
+    [points[8], points[17]],
+    [points[19], points[18]]
   );
 
   let i = 0;
@@ -41,14 +46,24 @@ readInterface.on("close", () => {
         fireflies[1][0][0],
         fireflies[2][0][0],
         fireflies[3][0][0],
-        fireflies[4][0][0]
+        fireflies[4][0][0],
+        fireflies[5][0][0],
+        fireflies[6][0][0],
+        fireflies[7][0][0],
+        fireflies[8][0][0],
+        fireflies[9][0][0]
       ],
       y: [
         fireflies[0][0][1],
         fireflies[1][0][1],
         fireflies[2][0][1],
         fireflies[3][0][1],
-        fireflies[4][0][1]
+        fireflies[4][0][1],
+        fireflies[5][0][1],
+        fireflies[6][0][1],
+        fireflies[7][0][1],
+        fireflies[8][0][1],
+        fireflies[9][0][1]
       ],
       mode: "markers",
       type: "scatter"
