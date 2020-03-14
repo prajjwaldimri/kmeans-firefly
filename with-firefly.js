@@ -38,7 +38,7 @@ readInterface.on("close", () => {
   });
 
   // Some termination criteria should be specified here
-  while (i < 5) {
+  while (i < 10) {
     let alpha = 0.2;
     let epsilon = new Matrix([
       [3.73, 2.408],
@@ -90,7 +90,9 @@ readInterface.on("close", () => {
     };
     plot([trace], {
       width: 1366,
-      height: 768
+      height: 768,
+      xaxis: { range: [0, 20] },
+      yaxis: { range: [0, 20] }
     });
   }
 });
